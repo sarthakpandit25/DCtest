@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="278d4f8f-f069-4e5d-b2a4-d99e1a154c9a" >
+		<db:mssql-connection host="datastore.wsgr.com" port="1433" user="K1Processing" password="pr0c3551ng4K1!" databaseName="K1" />
+	</db:config>
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c2214364-5b83-4f83-a448-d38a82b3730b" basePath="/test" >
+		<http:listener-connection host="0.0.0.0" port="2512" />
+	</http:listener-config>
+	<flow name="dctestFlow" doc:id="7a64af7f-9709-49f6-b798-842c1fa9f447" >
+		<http:listener doc:name="Listener" doc:id="5bd0415a-1c51-428a-a7e1-e525b33866b6" config-ref="HTTP_Listener_config" path="/test" outputMimeType="application/json"/>
+		<logger level="INFO" doc:name="Logger" doc:id="839467d5-2181-4a9a-9640-7d28d77623d0" message="The application is running fine"/>
+	</flow>
+</mule>
